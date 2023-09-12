@@ -7,7 +7,7 @@ const app = express();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 
 const {readAndDelete} = require("./utils/helpers")
 
