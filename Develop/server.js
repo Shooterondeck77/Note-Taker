@@ -5,19 +5,18 @@ const path = require('path');
 const app = express();
 
 const fs = require('fs');
-const { v4: uuidv4 } = require('uuid'); 
+const { v4: uuidv4 } = require('uuid');
 
 const PORT = 3003;
+
+const {readAndDelete} = require("./utils/helpers")
 
 app.use(express.static('public'));
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('Navigate to /notes'));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
 
-// GET Route for notes page
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/notes.html'))
-);
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
 
 const dbFilePath = './db/db.json';
 
@@ -51,9 +50,11 @@ app.post('/api/notes', (req, res) => {
   res.json(newNote);
 });
 
-module.exports = app;
+app.delete("/api/notes/:id", (req, res) => {
+  readAndDelete(req.params.id, "./db/db.json")
+  res.json(true)
+})
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
- 
