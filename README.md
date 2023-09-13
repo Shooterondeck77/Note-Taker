@@ -6,6 +6,16 @@ AS A small business owner
 I WANT to be able to write and save notes
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
+## Screenshots of the page
+
+
+## Technologies used
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express.js
+
 ## Installation
 To install this application, you would need to clone this repository in GitHub
 
